@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useSearch } from "../../context/SearchContext";
+import Advertisement from "../../components/Advertisement";
 import ProductCard from "../../components/ProductCard";
 import Pagination from "../../components/Pagination";
 import Loader from "../../components/Loader";
 import Dropdown from "../../components/Dropdown";
-import { useSearch } from "../../context/SearchContext";
+import NoRecord from "../../components/NoRecord";
 import { debounce } from "../../utils/debounce";
-
-const URL = "https://dummyjson.com/products";
+import { apiURL } from "../../static";
 
 const Products = () => {
   const { searchValue, setSearchValue } = useSearch();
@@ -21,11 +22,11 @@ const Products = () => {
     async (currentPage = 1, search = "", category = "") => {
       setLoading(true);
       const query = `?skip=${(currentPage - 1) * 10}&limit=10`;
-      let endpoint = `${URL}${query}`;
+      let endpoint = `${apiURL}${query}`;
       if (search) {
-        endpoint = `${URL}/search${query}&q=${encodeURIComponent(search)}`;
+        endpoint = `${apiURL}/search${query}&q=${encodeURIComponent(search)}`;
       } else if (category) {
-        endpoint = `${URL}/category/${encodeURIComponent(category)}${query}`;
+        endpoint = `${apiURL}/category/${encodeURIComponent(category)}${query}`;
       }
       try {
         const response = await fetch(endpoint);
@@ -63,7 +64,7 @@ const Products = () => {
 
   const getCategoryData = useCallback(async () => {
     try {
-      const response = await fetch(`${URL}/categories`);
+      const response = await fetch(`${apiURL}/categories`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -102,22 +103,29 @@ const Products = () => {
 
   return (
     <div>
-      <Dropdown
-        className="w-[346px] my-3"
-        options={categoryOptions}
-        defaultValue={selectedCategory}
-        onChange={handleCategoryChange}
-        placeholder="Select Category"
-      />
+      <div className="flex flex-col-reverse md:flex-col md:items-start items-center">
+        <Advertisement className="order-1 md:order-2" />
+        <Dropdown
+          className="sm:w-[346px] md:w-[400px] lg:w-[500px] md:my-3 mb-3 order-2 md:order-1"
+          options={categoryOptions}
+          defaultValue={selectedCategory}
+          onChange={handleCategoryChange}
+          placeholder="Select Category"
+        />
+      </div>
       {isLoading ? (
         <Loader />
       ) : (
         <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-4">
-            {productData.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          {productData?.length === 0 ? (
+            <NoRecord />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-4">
+              {productData?.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )}
           {totalPages > 1 ? (
             <div className="flex justify-end my-2">
               <Pagination

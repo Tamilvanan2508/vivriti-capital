@@ -26,7 +26,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             : "bg-gray-700 text-white hover:bg-gray-600 border-gray-300"
         }`}
       >
-        Prev
+        {"<"}
       </button>
       {pageNumbers.map((number, index) => {
         const previousNumber = pageNumbers[index - 1];
@@ -59,7 +59,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             : "bg-gray-700 text-white hover:bg-gray-600 border-gray-300"
         }`}
       >
-        Next
+        {">"}
       </button>
     </div>
   );

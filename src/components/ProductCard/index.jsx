@@ -1,4 +1,6 @@
 import React from "react";
+import { AiOutlineHeart } from "react-icons/ai";
+import { FaStar } from "react-icons/fa";
 import LazyImage from "../LazyImage";
 
 const ProductCard = ({ product }) => {
@@ -16,7 +18,7 @@ const ProductCard = ({ product }) => {
           className="w-full h-[20rem]"
         />
         <button className="absolute top-2.5 right-2.5 p-2 text-white bg-gray-500 hover:bg-gray-600 transition-colors duration-300">
-          ♥
+          <AiOutlineHeart />
         </button>
       </div>
       <div className="px-5 py-3">
@@ -38,19 +40,14 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="flex items-center mt-2.5">
           {Array.from({ length: 5 }, (_, index) => (
-            <svg
+            <FaStar
               key={index}
               className={`w-5 h-5 ${
                 index < Math.floor(product.rating)
                   ? "text-yellow-400"
                   : "text-gray-300"
               }`}
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M9.049 2.927c.384-.768 1.617-.768 2.002 0l1.868 3.745a1.2 1.2 0 00.9.657l4.131.6a1.34 1.34 0 01.743 2.287l-2.992 2.917a1.2 1.2 0 00-.345 1.063l.705 4.117a1.34 1.34 0 01-1.947 1.414L10 15.434l-3.7 1.944a1.34 1.34 0 01-1.947-1.414l.705-4.117a1.2 1.2 0 00-.345-1.063L2.72 9.516a1.34 1.34 0 01.743-2.287l4.131-.6a1.2 1.2 0 00.9-.657l1.868-3.745z" />
-            </svg>
+            />
           ))}
         </div>
       </div>

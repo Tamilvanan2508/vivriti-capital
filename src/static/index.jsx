@@ -18,6 +18,8 @@ import {
   SiBitcoin,
 } from "react-icons/si";
 
+export const apiURL = "https://dummyjson.com/products";
+
 export const headerLinks = ["Store", "Account", "Wish List", "Basket"];
 
 export const companyInfoLinks = [
