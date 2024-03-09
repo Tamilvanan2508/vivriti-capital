@@ -20,6 +20,7 @@ const Products = () => {
 
   const fetchProductData = useCallback(
     async (currentPage = 1, search = "", category = "") => {
+      window.scrollTo(0, 0);
       setLoading(true);
       const query = `?skip=${(currentPage - 1) * 10}&limit=10`;
       let endpoint = `${apiURL}${query}`;
@@ -34,7 +35,6 @@ const Products = () => {
         const data = await response.json();
         setProductData(data.products);
         setTotalPages(Math.ceil(data.total / 10));
-        window.scrollTo(0, 0);
       } catch (error) {
         console.error("Failed to fetch product data:", error);
       } finally {
@@ -127,7 +127,7 @@ const Products = () => {
             </div>
           )}
           {totalPages > 1 ? (
-            <div className="flex justify-end my-2">
+            <div className="flex md:justify-end justify-center my-2">
               <Pagination
                 totalPages={totalPages}
                 currentPage={currentPage}

@@ -20,11 +20,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
-        className={`px-4 py-2 border ${
+        className={`px-3 py-1 text-xs border ${
           currentPage === 1
             ? "bg-gray-200 text-gray-400 cursor-not-allowed border-gray-300"
             : "bg-gray-700 text-white hover:bg-gray-600 border-gray-300"
-        }`}
+        } sm:px-4 sm:py-2 sm:text-base`}
       >
         {"<"}
       </button>
@@ -33,17 +33,17 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         return (
           <React.Fragment key={number}>
             {previousNumber && number - previousNumber > 1 && (
-              <span className="px-4 py-2 text-gray-600 bg-white border border-gray-300">
+              <span className="px-3 py-1 text-xs text-gray-600 bg-white border border-gray-300 sm:px-4 sm:py-2 sm:text-base">
                 ...
               </span>
             )}
             <button
               onClick={() => onPageChange(number)}
-              className={`px-4 py-2 border ${
+              className={`px-3 py-1 text-xs border ${
                 currentPage === number
                   ? "bg-gray-700 text-white"
                   : "text-gray-600 bg-white hover:bg-gray-600 hover:text-white border-gray-300"
-              }`}
+              } sm:px-4 sm:py-2 sm:text-base`}
             >
               {number}
             </button>
@@ -53,11 +53,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
-        className={`px-4 py-2 border ${
+        className={`px-3 py-1 text-xs border ${
           currentPage === totalPages
             ? "bg-gray-200 text-gray-400 cursor-not-allowed border-gray-300"
             : "bg-gray-700 text-white hover:bg-gray-600 border-gray-300"
-        }`}
+        } sm:px-4 sm:py-2 sm:text-base`}
       >
         {">"}
       </button>
