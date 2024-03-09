@@ -1,10 +1,10 @@
 import "./App.css";
-import Products from "./screens/Products";
+import Layout from "./layouts";
 
 function App() {
   return (
     <div className="App">
-      <Products />
+      <Layout />
     </div>
   );
 }
