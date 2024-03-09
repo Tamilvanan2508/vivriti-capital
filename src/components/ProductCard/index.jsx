@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
   ).toFixed(2);
 
   return (
-    <div class="max-w-sm bg-white rounded-lg overflow-hidden border shadow hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+    <div className="max-w-sm bg-white rounded-lg overflow-hidden border shadow hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
       <div className="relative">
         <LazyImage
           src={product.thumbnail}

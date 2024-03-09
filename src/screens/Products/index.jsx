@@ -120,7 +120,7 @@ const Products = () => {
           {productData?.length === 0 ? (
             <NoRecord />
           ) : (
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-2">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-2">
               {productData?.map((product) => (
                 <div key={product.id}>
                   <ProductCard product={product} />
